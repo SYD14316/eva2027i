@@ -1,0 +1,5 @@
+Ids por tipo en la base de datos
+licenciatura
+	->coordinadores 901 - 999
+	->profesores 1001 - 1999
+	->alumnos	2001 - 2999

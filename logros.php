@@ -1,0 +1,13 @@
+<?php
+	// Logros de Licenciatura
+	//$logros_lic[] = "Ciencias de la Salud:<ul><li>Las alumnas Mayra Ileana Gutiérrez Márquez y Sandra Fernanda Gómez Ramos, participaron en Expo Ciencias Nacional, evento realizado en Morelia, Michoacán, en diciembre del 2018, con el proyecto: 'Desarrollo e Implementación del taller Proyección futura al internamiento a los jóvenes privados', obteniendo la acreditación para presentar su proyecto en ExpoCiencias Bélgica, a celebrarse del 25 al 28 de abril de 2019, en Bruselas, Bélgica, al cual asistirán con su asesor, el Mtro. Alejandro Uribe López.</ul>";
+	//$logros_lic[] = "Ingenierías:<ul><li>Prácticas de Campo y Laboratorios en las Instalaciones de PHILIP MORRIS INTERNATIONAL, para alumnos de las Carreras de Ingeniería Aeroespacial, Cibernética y en Sistemas Computacionales, Industrial y en Sistemas Organizacionales.</li><li>Participación de la Alumna Andrea de la Torre Aceves, de la carrera de Ingeniería Aeroespacial, en su tercera participación a nivel internacional, colaborando en un proyecto acerca de la seguridad espacial, en el marco del Space Generation Congress 2018 celebrado en la Ciudad de Bremen, Alemania.</li><li>Participación en el Congreso Internacional de Astronáutica 2018, en la ciudad de Bremen, Alemaniade, de alumnos de la Carrera de Ingeniería Aeroespacial:</li><ul><li>Andrea de la Torre Aceves</li><li>Luis Pérez Castillo</li><li>Oscar Daniel Rendón Hernández</li><li>Misraym Iván de la Torre Contreras</li><li>Brandon Israel Escamilla Estrada</li><li>Salvador Osvaldo Huante Herrera</li><li>Marco Saúl Gutiérrez Covarrubias</li><li>Bernardo Martínez Hernández</li><li>César Augusto Quezada Santana</li><li>Jesús Carlos Ramírez Julián</li><li>Braulio Andrés Díaz García</li></ul></ul>";
+	//$logros_lic[] = "Arquitectura, Diseño y Animación:<ul><li>Se trabajó en proyectos integradores de aplicación social, en el diseño de dos prototipos de proyecto para CASA PARA PERSONAS AUTISTAS de la fundación trascendiendo el autismo A.C, así también colaboramos con el proyecto de ANDADOR CULTURAL ALCALDE , una propuesta y visión de ciudad para el Ayuntamiento de Guadalajara y Secretaría de cultura.</li><li>Por parte de animación se participó como ponente  en el evento SIGGRAPH Vancouver 2018 en el área de Animación  y Arte Digital</li></ul>";
+	
+	// Mensaje de solo texto
+	$solotexto_lic[] = "Tu punto de vista es muy importante para nosotros; agradecemos y valoramos tu participación en este proceso.";
+	
+	// Rubrica Vicerrector
+	$rubrica = "Comité de Evaluación"; // Grado (Lic., Ing., Mtro., Dr., etc.) y nombre
+	$sexo_rubrica = ""; // "a" si es mujer y "" si es hombre
+?>

@@ -1,0 +1,119 @@
+<?php
+	// Establece el tamaño de los distitntos sets de valores que se utilizarán, siempre el set 0 será de valor 1 porque es para las respuestas abiertas
+	$tamano_set_valores[0] = 1;
+	$tamano_set_valores[1] = 10;
+	$tamano_set_valores[2] = 10;
+	// Establece el set de valores para las respuestas cerradas y las de opción múltiple
+	$set_valores[1][0]['texto'] = "No aplica";
+	$set_valores[1][0]['valor'] = 0;
+	$set_valores[1][1]['texto'] = "1";
+	$set_valores[1][1]['valor'] = 1;
+	$set_valores[1][2]['texto'] = "2";
+	$set_valores[1][2]['valor'] = 2;
+	$set_valores[1][3]['texto'] = "3";
+	$set_valores[1][3]['valor'] = 3;
+	$set_valores[1][4]['texto'] = "4";
+	$set_valores[1][4]['valor'] = 4;
+	$set_valores[1][5]['texto'] = "5";
+	$set_valores[1][5]['valor'] = 5;
+	$set_valores[1][6]['texto'] = "6";
+	$set_valores[1][6]['valor'] = 6;
+	$set_valores[1][7]['texto'] = "7";
+	$set_valores[1][7]['valor'] = 7;
+	$set_valores[1][8]['texto'] = "8";
+	$set_valores[1][8]['valor'] = 8;
+	$set_valores[1][9]['texto'] = "9";
+	$set_valores[1][9]['valor'] = 9;
+	$set_valores[1][10]['texto'] = "10";
+	$set_valores[1][10]['valor'] = 10;
+	$set_valores[2][0]['texto'] = "0";
+	$set_valores[2][0]['valor'] = 0;
+	$set_valores[2][1]['texto'] = "1";
+	$set_valores[2][1]['valor'] = 1;
+	$set_valores[2][2]['texto'] = "2";
+	$set_valores[2][2]['valor'] = 2;
+	$set_valores[2][3]['texto'] = "3";
+	$set_valores[2][3]['valor'] = 3;
+	$set_valores[2][4]['texto'] = "4";
+	$set_valores[2][4]['valor'] = 4;
+	$set_valores[2][5]['texto'] = "5";
+	$set_valores[2][5]['valor'] = 5;
+	$set_valores[2][6]['texto'] = "6";
+	$set_valores[2][6]['valor'] = 6;
+	$set_valores[2][7]['texto'] = "7";
+	$set_valores[2][7]['valor'] = 7;
+	$set_valores[2][8]['texto'] = "8";
+	$set_valores[2][8]['valor'] = 8;
+	$set_valores[2][9]['texto'] = "9";
+	$set_valores[2][9]['valor'] = 9;
+	$set_valores[2][10]['texto'] = "10";
+	$set_valores[2][10]['valor'] = 10;
+	// Establece las secciones de reactivos
+	$secciones[1][0]['numeracion'] = "A"; // Establece la numeración para esta sección, dejar en blanco para no numerar.
+	$secciones[1][0]['texto'] = $parametros[5];
+	$secciones[1][0]['limitada'] = ""; // Una palabra de una carrera limita a que solo esa carrera pueda acceder, si son varias separar por espacios. Dejar cadena vacía para que accedan todas.
+	$secciones[1][1]['inicia'] = 1;  // Número de reactivo con el que inicia la subsección
+	$secciones[1][1]['termina'] = 18;  // Número de reactivo con el que termina la subsección
+	$secciones[1][1]['tipo'] = "CERRADA"; // Los valores posibles son "CERRADA", "MULTIPLE" o "ABIERTA"
+	$secciones[1][1]['set_valores'] = 1; // En abierta poner 0
+	$secciones[1][1]['cero'] = "NA"; // Si el valor de cero se tomará para no aplica poner "NA", para insuficiente "INS", si no hay valor cero poner ""
+	$secciones[1][1]['comentario'] = false; // Indica si después del reactivo debe de haber un espacio para el comentario. Valores true o false.
+	$secciones[1][1]['limitada'] = ""; // Una palabra de una carrera limita a que solo esa carrera pueda acceder, si son varias separar por espacios. Dejar cadena vacía para que accedan todas.
+	$secciones[1][2]['inicia'] = 19;
+	$secciones[1][2]['termina'] = 19;
+	$secciones[1][2]['tipo'] = "CERRADA";
+	$secciones[1][2]['set_valores'] = 2;
+	$secciones[1][2]['cero'] = "";
+	$secciones[1][2]['comentario'] = false;
+	$secciones[1][2]['limitada'] = "";
+	$secciones[2][0]['numeracion'] = "B";
+	$secciones[2][0]['texto'] = "Comentarios";
+	$secciones[2][0]['limitada'] = "";
+	$secciones[2][1]['inicia'] = 20;
+	$secciones[2][1]['termina'] = 20;
+	$secciones[2][1]['tipo'] = "ABIERTA";
+	$secciones[2][1]['set_valores'] = 0;
+	$secciones[2][1]['cero'] = "";
+	$secciones[2][1]['comentario'] = false;
+	$secciones[2][1]['limitada'] = "";
+	// Establece el total de secciones y subsecciones así como de reactivos
+	$total_secciones = 2;
+	$total_subsecciones[1] = 2;
+	$total_subsecciones[2] = 1;
+	$total_reactivos = 20;
+	// Establece el número de respuestas posibles por renglón
+	$valores_por_renglon = 11;
+	// Establece el texto previo a los reactivos
+	$previo['numeracion'] = "";
+	$previo['encabezado'] = "Indicaciones";
+	$previo['cuerpo'][] = "Este apartado incluye preguntas para que evalúes el desempeño en la coordinación de esta carrera.";
+	$previo['cuerpo'][] = "Evalúa el desempeño del coordinador en cada uno de los siguientes aspectos, donde 1 es la calificación mínima y 10 la máxima.";
+	$previo['cuerpo'][] = "Selecciona que no aplica cuando, por la naturaleza del programa de estudios, esa situación no se presenta.";
+	// Establece el texto de los reactivos
+	$texto_reactivo[1] = "Participó en cursos, foros, congresos o seminarios para actualizarse en su formación profesional y pedagógica.";
+	$texto_reactivo[2] = "Promovió la investigación entre los estudiantes de la Carrera a su cargo.";
+	$texto_reactivo[3] = "Promovió la revisión de los planes de estudio en las reuniones de trabajo de los colegios de profesores.";
+	$texto_reactivo[4] = "Planeó los procesos propios de la licenciatura a su cargo en las fechas marcadas por la institución.";
+	$texto_reactivo[5] = "Conformó el equipo docente de la Carrera a su cargo antes de iniciar el semestre, de acuerdo a los criterios establecidos por la institución.";
+	$texto_reactivo[6] = "Coordinó las actividades y eventos con el departamento administrativo.";
+	$texto_reactivo[7] = "Participó activamente en actividades de promoción de su carrera en eventos organizados por el departamento de Comunicación e Imagen Institucional.";
+	$texto_reactivo[8] = "Organizó eventos que mejoraron la formación profesional de los estudiantes y que posicionaron la carrera (congresos, seminarios, conferencias, etc.).";
+	$texto_reactivo[9] = "Vinculó la Carrera con los sectores empresarial, gubernamental, no gubernamental, educativo o religioso a través de convenios y acuerdos.";
+	$texto_reactivo[10] = "Fomentó la generación de proyectos solidarios a favor de los menos favorecidos.";
+	$texto_reactivo[11] = "Diseñó programas y actividades de Educación Continua para egresados y profesionales relacionados con la Carrera.";
+	$texto_reactivo[12] = "Promovió la vinculación con empleadores para retroalimentar los programas de estudio de la Carrera.";
+	$texto_reactivo[13] = "Estuvo atento al proceso de aprendizaje, asistencia y resultados académicos de sus estudiantes.";
+	$texto_reactivo[14] = "Mantuvo una comunicación constante con los estudiantes, para mantenerlos informados oportunamente mediante el uso de varios medios (redes sociales, correo electrónico, información impresa, etc.).";
+	$texto_reactivo[15] = "Promovió actividades encaminadas al desarrollo de valores maristas en los estudiantes (amor al trabajo, espíritu de familia, relaciones cordiales, acompañamiento, etc.).";
+	$texto_reactivo[16] = "Proporcionó atención oportuna y respetuosa a sus profesores cuando fue necesaria o cuando se le requirió.";
+	$texto_reactivo[17] = "Convocó a reuniones de trabajo a los colegios de profesores de su Carrera.";
+	$texto_reactivo[18] = "Dio seguimiento a los proyectos integradores de la Carrera a su cargo.";
+	$texto_reactivo[19] = "De manera general, la calificación que le otorgo con respecto al desempeño como Coordinador" . $parametros[4] . " es…";
+	$texto_reactivo[20] = "Escribe, si así lo deseas, comentarios respecto a" . $parametros[6] . "…";
+	// Define el texto del encabezado de la evaluación
+	$encabezado[1] = $parametros[3];
+	$encabezado[2] = "COORDINACION DE " . $parametros[2];
+	// Define la secuencia de campos a registrar en la base de datos (solo 3)
+	$secuencia_sql[1] = "carrera, nombre"; // Campos de la tabla adicionales a las meras respuestas
+	$secuencia_sql[2] =  $parametros[2] . "', '" . $parametros[3];
+?>

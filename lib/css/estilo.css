@@ -1,0 +1,502 @@
+<style type="text/css">
+
+	body{
+		margin: 0px;
+	}
+	td.gris {
+		background-color: #c8c8c8;
+	}
+
+	td.amarillo {
+		background-color: #ffff66;
+	}
+
+	td.verde {
+		background-color: #b0ffad;
+	}
+
+	td.rojo {
+		background-color: #ff6060;
+	}
+
+	td.azul {
+		background-color: #9ec9e3;
+	}
+	li {
+		font: 13px Verdana, Geneva, sans-serif;
+	}
+	.formulario-maristas{
+		background: #fff;
+		margin: 0;
+		padding: 0px;
+	}
+	.formulario-maristas .contenedor-principal{
+		width: 70%;
+		padding: 30px;
+		margin: 40px auto;
+		background: #fff;
+		border-radius: 10px;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+		-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+		-webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+	}
+	.formulario-maristas .contenedor-interno{
+		padding: 30px;
+		background: #f8f8f8;
+		border-radius: 6px;
+		margin-bottom: 15px;
+	}
+	.formulario-maristas .contenedor-interno p{
+		font: normal 13px Verdana, Geneva, sans-serif;
+	}
+	.formulario-maristas h1{
+		background: #003763;
+		padding: 20px 30px 15px 30px;
+		margin: -30px -30px 30px -30px;
+		border-radius: 10px 10px 0 0;
+		-webkit-border-radius: 10px 10px 0 0;
+		-moz-border-radius: 10px 10px 0 0;
+		color: #fff;
+		text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+		font: normal 30px Verdana, Geneva, sans-serif;
+		-moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+		-webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+		box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+		border: 1px solid #2e7bcf;
+		min-height:100px;
+	}
+	.formulario-maristas h2{
+		background: #003763;
+		padding: 20px 30px 15px 30px;
+		margin: -30px -30px 30px -30px;
+		border-radius: 10px 10px 0 0;
+		-webkit-border-radius: 10px 10px 0 0;
+		-moz-border-radius: 10px 10px 0 0;
+		color: #fff;
+		text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+		font: normal 25px Verdana, Geneva, sans-serif;
+		-moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+		-webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+		box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+		border: 1px solid #2e7bcf;
+		min-height:100px;
+	}
+	.formulario-maristas h1 > span{
+		display: block;
+		margin-top: 2px;
+		font: 13px Verdana, Geneva, sans-serif;
+	}
+	.formulario-maristas h1 > img{
+		float: left;
+		margin: 0px 15px 0px 0px;
+		height: 90px;
+	}
+	.formulario-maristas p{
+		display: block;
+		font: 13px Verdana, Geneva, sans-serif;
+		color: #000;
+		margin: 0px;
+	}
+	.formulario-maristas label{
+		display: inline;
+		font: 13px Verdana, Geneva, sans-serif;
+		color: #888;
+		margin-bottom: 15px;
+		margin-right: 30px;
+	}
+	.formulario-maristas input[type="text"],
+	.formulario-maristas input[type="date"],
+	.formulario-maristas input[type="datetime"],
+	.formulario-maristas input[type="email"],
+	.formulario-maristas input[type="number"],
+	.formulario-maristas input[type="search"],
+	.formulario-maristas input[type="tel"],
+	.formulario-maristas input[type="time"],
+	.formulario-maristas input[type="url"],
+	.formulario-maristas input[type="password"],
+	.formulario-maristas input[type="file"],
+	.formulario-maristas textarea,
+	.formulario-maristas select{
+		display: block;
+		box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		width: 100%;
+		padding: 8px;
+		border-radius: 6px;
+		-webkit-border-radius:6px;
+		-moz-border-radius:6px;
+		border: 2px solid #fff;
+		box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+		-moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+		-webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+		font-family: Verdana, Geneva, sans-serif;
+	}
+	.formulario-maristas .seccion{
+		font: normal 20px Verdana, Geneva, sans-serif;
+		color: #003763;
+		margin-bottom: 5px;
+	}
+	.formulario-maristas .seccion span{
+		background: #ffb600;
+		padding: 5px 10px 5px 10px;
+		position: absolute;
+		border-radius: 50%;
+		-webkit-border-radius: 50%;
+		-moz-border-radius: 50%;
+		border: 1px solid #fff;
+		font-size: 14px;
+		margin-left: -38px;
+		color: #fff;
+		margin-top: -3px;
+	}
+	.formulario-maristas input[type="button"], 
+	.formulario-maristas input[type="file"], 
+	.formulario-maristas input[type="submit"]{
+		background: #003763;
+		padding: 8px 20px 8px 20px;
+		border-radius: 5px;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		color: #fff;
+		text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+		font: normal 30px Verdana, Geneva, sans-serif;
+		-moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+		-webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+		box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+		border: 1px solid #2e7bcf;
+		font-size: 15px;
+	}
+	.formulario-maristas input[type="button"]:hover, 
+	.formulario-maristas input[type="file"]:hover, 
+	.formulario-maristas input[type="submit"]:hover{
+		background: #005ec4;
+		-moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+		-webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+		box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+	}
+	.formulario-maristas input[type="submit"].submit-activo{
+		background: #ffb600;
+		border: 1px solid #ffb600;
+	}
+	.formulario-maristas button{
+		background: #dedede;
+		padding: 8px 20px 8px 20px;
+		border-radius: 5px;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		color: #003763;
+		text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+		font: normal 30px Verdana, Geneva, sans-serif;
+		-moz-box-shadow: inset 0px 2px 2px 0px rgba(30, 30, 26, 0.17);
+		-webkit-box-shadow: inset 0px 2px 2px 0px rgba(30, 30, 26, 0.17);
+		box-shadow: inset 0px 2px 2px 0px rgba(30, 30, 26, 0.17);
+		border: 1px solid #2e7bcf;
+		font-size: 15px;
+	}
+	.formulario-maristas button:hover{
+		background: #fff;
+		-moz-box-shadow: inset 0px 2px 2px 0px rgba(30, 30, 26, 0.28);
+		-webkit-box-shadow: inset 0px 2px 2px 0px rgba(30, 30, 26, 0.28);
+		box-shadow: inset 0px 2px 2px 0px rgba(30, 30, 26, 0.28);
+	}
+	.formulario-maristas table{
+		width: 100%;
+		background: #fff;
+		border: 1px solid #2e7bcf;
+		border-collapse: collapse;
+		overflow: auto;
+		word-wrap: break-word;
+		word-break: break-word;
+	}
+	.formulario-maristas th, tr, td{
+		font: 13px Verdana, Geneva, sans-serif;
+		color: #000;
+		margin: 0px;
+		border: 1px solid #2e7bcf;
+		border-collapse: collapse;
+		text-align: center;
+		word-wrap: break-word;
+		word-break: break-word;
+	}
+	.formulario-maristas th{
+		font-weight: bold;
+		background: #2e7bcf;
+		color: #fff;
+		vertical-align: middle;
+	}
+	.formulario-maristas td.completada {
+		padding: 11px 20px 11px 20px;
+	}
+	.formulario-maristas .desaparece-celda{
+		background:#f8f8f8;
+		border-top: 1px solid #f8f8f8;
+		border-left: 1px solid #f8f8f8;
+	}
+	.formulario-maristas .texto-vertical{
+		text-align: center;
+		white-space: nowrap;
+		transform: rotate(270deg);
+		width: 20px;
+		background: none;
+	}
+	.formulario-maristas .texto-vertical p{
+		margin: 0 -999px;/* virtually reduce space needed on width to very little */
+		display: inline-block;
+		font-size: 70%;
+	}
+	.formulario-maristas .texto-vertical p:before{
+		content: '';
+		width: 0;
+		padding-top: 110%;
+		/* takes width as reference, + 10% for faking some extra padding */
+		display: inline-block;
+		vertical-align: middle;
+	}
+	.formulario-maristas .texto-vertical table{
+		text-align: center;
+	}
+	.formulario-maristas .encabezado form{
+		background: #2e7bcf;
+		display: inline;
+	}
+	.formulario-maristas .encabezado input[type="button"], 
+	.formulario-maristas .encabezado input[type="submit"]{
+		background: #2e7bcf;
+		padding: 0px;
+		border-radius: 0px;
+		-webkit-border-radius: 0px;
+		-moz-border-radius: 0px;
+		color: #fff;
+		text-shadow: none;
+		font: bold 13px Verdana, Geneva, sans-serif;
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+		border: 1px solid #2e7bcf;
+		display: inline;
+	}
+	.formulario-maristas .encabezado input[type="button"]:hover, 
+	.formulario-maristas .encabezado input[type="submit"]:hover{
+		background: #005ec4;
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+	
+	.formulario-maristas .menu-maristas{
+		background: #003763;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		width: 100%;
+		font: 13px Verdana, Geneva, sans-serif;
+		position: fixed;
+		top: 0;
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		z-index: 9999;
+	}
+
+	.formulario-maristas .menu-maristas .separador{
+		display: inline;
+		width: 100px;
+		float: left;
+		padding: 14px 16px;
+	}
+	.formulario-maristas .menu-maristas form{
+		display: inline;
+		padding: 14px 0px 14px 16px;
+	}
+	.formulario-maristas .menu-maristas input[type="text"],
+	.formulario-maristas .menu-maristas input[type="date"],
+	.formulario-maristas .menu-maristas input[type="datetime"],
+	.formulario-maristas .menu-maristas input[type="email"],
+	.formulario-maristas .menu-maristas input[type="number"],
+	.formulario-maristas .menu-maristas input[type="search"],
+	.formulario-maristas .menu-maristas input[type="tel"],
+	.formulario-maristas .menu-maristas input[type="time"],
+	.formulario-maristas .menu-maristas input[type="url"],
+	.formulario-maristas .menu-maristas input[type="password"],
+	.formulario-maristas .menu-maristas textarea,
+	.formulario-maristas .menu-maristas select{
+		display: inline;
+		box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		width: 50px;
+		border-radius: 0px;
+		-webkit-border-radius:0px;
+		-moz-border-radius:0px;
+		border: 1px solid #fff;
+		box-shadow: none;
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+		padding: 6px 0px;
+		text-align: center;
+		font: normal 13px Verdana, Geneva, sans-serif;
+	}
+	.formulario-maristas .menu-maristas input[type="button"], 
+	.formulario-maristas .menu-maristas input[type="submit"]{
+		background: #003763;
+		padding: 14px 16px 14px 8px;
+		border-radius: 0px;
+		-webkit-border-radius: 0px;
+		-moz-border-radius: 0px;
+		color: #fff;
+		font: normal 13px Verdana, Geneva, sans-serif;
+		text-shadow: none;
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+		border: 0px solid #003763;
+	}
+	.formulario-maristas .menu-maristas input[type="button"]:hover, 
+	.formulario-maristas .menu-maristas input[type="submit"]:hover{
+		background: #005ec4;
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+	.formulario-maristas .menu-maristas input:focus,
+	.formulario-maristas .menu-maristas textarea:focus,
+	.formulario-maristas .menu-maristas select:focus{
+		outline: none !important;
+	}
+	.formulario-maristas .menu-maristas button{
+		background: #003763;
+		padding: 14px 16px;
+		border-radius: 0px;
+		-webkit-border-radius: 0px;
+		-moz-border-radius: 0px;
+		color: #fff;
+		text-shadow: none;
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+		border: 0px solid #003763;
+		text-align: center;
+		text-decoration: none;
+		font: 13px Verdana, Geneva, sans-serif;
+		float: left;
+		border-right: 1px solid #bbb;
+	}
+	.formulario-maristas .menu-maristas button:last-child{
+		border-right: none;
+	}
+	.formulario-maristas .menu-maristas button:hover:not(.opcion-activa){
+		background: #005ec4;
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+	.formulario-maristas .menu-maristas .opcion-activa {
+		background-color: #ffb600;
+	}
+	.formulario-maristas .menu-maristas .salir {
+		float: right;
+	}
+	.formulario-maristas .menu-maristas button:focus{
+		outline: none !important;
+	}
+	.formulario-maristas .menu-maristas ul{
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		background-color: #003763;
+		width: 100%;
+		font: 13px Verdana, Geneva, sans-serif;
+		display: inline;
+		color: white;
+	}
+	.formulario-maristas .menu-maristas li {
+		float: left;
+		color: white;
+		border-right: 1px solid #bbb;
+	}
+	.formulario-maristas .menu-maristas li a {
+		display: block;
+		color: white;
+		text-align: center;
+		padding: 14px 16px;
+		text-decoration: none;
+	}
+	.formulario-maristas .menu-maristas li a:hover:not(.resaltar) {
+		background-color: #005ec4;
+	}
+	.formulario-maristas .menu-maristas .resaltar {
+		background-color: #ffb600;
+	}
+	.formulario-maristas .espacio-menu {
+		height: 43px;
+	}
+	.formulario-maristas .politica-privacidad{
+		float: right;
+		width: 250px;
+		font: 12px Verdana, Geneva, sans-serif;
+		color: #4d4d4d;
+		margin-top: 10px;
+		text-align: right;
+	}
+	.formulario-maristas .nota-verde {
+		float: right;
+		width: auto;
+		font: 6pt Verdana, Geneva, sans-serif;
+		color: #4d4d4d;
+		margin-top: 10px;
+		text-align: right;
+	}
+	.formulario-maristas .nota-verde img{
+		height: 30px;
+	}
+	.rotated-parent {
+		width: 5%;
+		max-width: 30px;
+		overflow: hidden;
+		height: 120px;
+	}
+	.rotated {
+		/* display: block; */
+		position: relative;
+		left: 0;
+		top: 0;
+		text-align: center;
+		white-space: nowrap !important;
+		float: left;
+		min-width: 400%;
+		margin-left: -150%;
+	}
+	.rotated-up {
+		-ms-transform: rotate(-90deg);
+		-moz-transform: rotate(-90deg);
+		-webkit-transform: rotate(-90deg);
+		transform: rotate(-90deg);
+		filter: none; /* Mandatory for IE9 to show the vertical text correctly */ 
+		-ms-transform-origin: center center 0;
+		-moz-transform-origin: center center 0;
+		-webkit-transform-origin: center center  0;
+		transform-origin: center center 0;
+	}
+	.vacio {
+		background-color:none;
+	}
+	/*@media screen and (max-width: 810px) {
+		.formulario-maristas .espacio-menu {
+			height: 86px;
+		}
+	}
+	@media screen and (max-width: 570px) {
+		.formulario-maristas .espacio-menu {
+			height: 129px;
+		}
+	}*/
+	@media print {
+		.formulario-maristas .contenedor-principal{
+			width: 85%;
+			margin: 40px auto;
+			font-size: x-small;
+		}
+	}
+</style>

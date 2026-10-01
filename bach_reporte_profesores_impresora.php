@@ -1,0 +1,382 @@
+<?php
+	session_start();
+	require 'lib/config.php';
+	$parametros_validos = false;
+	unset($parametros);
+	$string_parametros = desencriptar($_GET['parametros']);
+	if ((substr($string_parametros,0,2)=="%%") AND (substr($string_parametros,(strlen($string_parametros)-2),2)=="%%")) {
+		$string_parametros = substr($string_parametros,2,strlen($string_parametros)-4);
+		$parametros_validos = true;
+		if(strpos($string_parametros,"¬")===FALSE) {
+			$parametros[] = $string_parametros;
+		} else {
+			do {
+				if(substr($string_parametros,0,strpos($string_parametros,"¬"))=="--SinProfesor--") $parametros[] = "--SinCarrera--";
+				$parametros[] = substr($string_parametros,0,strpos($string_parametros,"¬"));
+				$string_parametros = substr($string_parametros,strpos($string_parametros,"¬")+2);
+			} while (strpos($string_parametros,"¬"));
+			$parametros[] = $string_parametros;
+		}
+	}
+	if(!$parametros_validos) {
+		header('Location: index.php');
+	}
+	$post_nivel = $parametros[0];
+	$post_profesor = $parametros[1];
+	// Conectarse al servidor de la base de datos (BDD)
+	$base_de_datos = mysqli_connect($bdd_servidor,$bdd_usuario,$bdd_clave,$bdd_nombre);
+	// Verificar la conexión
+	if (mysqli_connect_errno()) {
+		printf("Falló la conexión: %s", mysqli_connect_error());
+		exit();
+	}
+	// Cambiar el conjunto de caracteres a utf8
+	if (!mysqli_set_charset($base_de_datos, "utf8")) {
+		printf("Error cargando el conjunto de caracteres utf8: %s", mysqli_error($base_de_datos));
+		exit();
+	}
+?>
+<html>
+	<?php include_once HEADER; ?>
+	<body>
+		<div class="container">
+			<div class="card">
+				<div class="card-header">
+					<h1>
+						<img src="lib/img/blanco.png" class="img-form-left" />
+						<?php echo $parametros[1]; ?>
+					</h1>
+					<span><?php echo "Ciclo " . $ciclo['BACHILLERATO']; ?></span>
+				</div>
+				<div class="card-body">
+					<?php
+						// ########### INICIO DE BLOQUE INICIALIZAR VARIABLES
+						unset($tamano_set_valores);
+						$tamano_set_valores[0] = 1;
+						$tamano_set_valores[1] = 5;
+						$tamano_set_valores[2] = 5;
+						$tamano_set_valores[3] = 5;
+						$tamano_set_valores[4] = 5;
+						$tamano_set_valores[5] = 5;
+						unset($set_valores);
+						$set_valores[1][1] = "Totalmente a destiempo";
+						$set_valores[1][2] = "Casi siempre es a destiempo";
+						$set_valores[1][3] = "Regular";
+						$set_valores[1][4] = "Muy buena";
+						$set_valores[1][5] = "Excelente";
+						$set_valores[2][1] = "Insuficiente";
+						$set_valores[2][2] = "Poco";
+						$set_valores[2][3] = "Regular";
+						$set_valores[2][4] = "Muy bueno";
+						$set_valores[2][5] = "Excelente";
+						$set_valores[3][1] = "Nula";
+						$set_valores[3][2] = "Poca";
+						$set_valores[3][3] = "Regular";
+						$set_valores[3][4] = "Muy buena";
+						$set_valores[3][5] = "Excelente";
+						$set_valores[4][1] = "Nulo";
+						$set_valores[4][2] = "Poco";
+						$set_valores[4][3] = "Regular";
+						$set_valores[4][4] = "Muy bueno";
+						$set_valores[4][5] = "Excelente";
+						$set_valores[5][1] = "Nunca";
+						$set_valores[5][2] = "Casi nunca";
+						$set_valores[5][3] = "A veces";
+						$set_valores[5][4] = "Casi siempre";
+						$set_valores[5][5] = "Siempre";
+						unset($secciones);
+						$secciones[1][0]['texto'] = "";
+						$secciones[1][1]['inicia'] = 1;
+						$secciones[1][1]['termina'] = 1;
+						$secciones[1][1]['tipo'] = "CERRADA"; // Los valores posibles son "CERRADA", "MULTIPLE" o "ABIERTA"
+						$secciones[1][1]['set_valores'] = 1; // En abierta poner 0
+						$secciones[1][1]['cero'] = ""; // Si el valor de cero se tomará para no aplica poner "NA", para insuficiente "INS", si no hay valor cero poner ""
+						$secciones[1][2]['inicia'] = 2;
+						$secciones[1][2]['termina'] = 2;
+						$secciones[1][2]['tipo'] = "CERRADA"; // Los valores posibles son "CERRADA", "MULTIPLE" o "ABIERTA"
+						$secciones[1][2]['set_valores'] = 2; // En abierta poner 0
+						$secciones[1][2]['cero'] = ""; // Si el valor de cero se tomará para no aplica poner "NA", para insuficiente "INS", si no hay valor cero poner ""
+						$secciones[1][3]['inicia'] = 3;
+						$secciones[1][3]['termina'] = 4;
+						$secciones[1][3]['tipo'] = "CERRADA"; // Los valores posibles son "CERRADA", "MULTIPLE" o "ABIERTA"
+						$secciones[1][3]['set_valores'] = 3; // En abierta poner 0
+						$secciones[1][3]['cero'] = ""; // Si el valor de cero se tomará para no aplica poner "NA", para insuficiente "INS", si no hay valor cero poner ""
+						$secciones[1][4]['inicia'] = 5;
+						$secciones[1][4]['termina'] = 5;
+						$secciones[1][4]['tipo'] = "CERRADA"; // Los valores posibles son "CERRADA", "MULTIPLE" o "ABIERTA"
+						$secciones[1][4]['set_valores'] = 4; // En abierta poner 0
+						$secciones[1][4]['cero'] = ""; // Si el valor de cero se tomará para no aplica poner "NA", para insuficiente "INS", si no hay valor cero poner ""
+						$secciones[1][5]['inicia'] = 6;
+						$secciones[1][5]['termina'] = 6;
+						$secciones[1][5]['tipo'] = "CERRADA"; // Los valores posibles son "CERRADA", "MULTIPLE" o "ABIERTA"
+						$secciones[1][5]['set_valores'] = 3; // En abierta poner 0
+						$secciones[1][5]['cero'] = ""; // Si el valor de cero se tomará para no aplica poner "NA", para insuficiente "INS", si no hay valor cero poner ""
+						$secciones[1][6]['inicia'] = 7;
+						$secciones[1][6]['termina'] = 7;
+						$secciones[1][6]['tipo'] = "CERRADA"; // Los valores posibles son "CERRADA", "MULTIPLE" o "ABIERTA"
+						$secciones[1][6]['set_valores'] = 4; // En abierta poner 0
+						$secciones[1][6]['cero'] = ""; // Si el valor de cero se tomará para no aplica poner "NA", para insuficiente "INS", si no hay valor cero poner ""
+						$secciones[1][7]['inicia'] = 8;
+						$secciones[1][7]['termina'] = 11;
+						$secciones[1][7]['tipo'] = "CERRADA"; // Los valores posibles son "CERRADA", "MULTIPLE" o "ABIERTA"
+						$secciones[1][7]['set_valores'] = 5; // En abierta poner 0
+						$secciones[1][7]['cero'] = ""; // Si el valor de cero se tomará para no aplica poner "NA", para insuficiente "INS", si no hay valor cero poner ""
+						$secciones[1][8]['inicia'] = 12;
+						$secciones[1][8]['termina'] = 13;
+						$secciones[1][8]['tipo'] = "ABIERTA"; // Los valores posibles son "CERRADA", "MULTIPLE" o "ABIERTA"
+						$secciones[1][8]['set_valores'] = 0; // En abierta poner 0
+						$secciones[1][8]['cero'] = ""; // Si el valor de cero se tomará para no aplica poner "NA", para insuficiente "INS", si no hay valor cero poner ""
+						$total_secciones = 1;
+						$total_subsecciones[1] = 8;
+						$total_preguntas = 13;
+						$valores_por_renglon = 5;
+						unset($numero_pregunta);
+						for ($contador_items=1; $contador_items<=$total_preguntas; $contador_items++) {
+							$numero_pregunta[$contador_items] = "r" . str_pad($contador_items, 2, "0", STR_PAD_LEFT);
+							$fondo[$contador_items] = "";
+						}
+						unset($texto_pregunta);
+						$texto_pregunta[1] = "La puntualidad para iniciar y finalizar cada una de sus sesiones de trabajo es";
+						$texto_pregunta[2] = "El nivel de conocimiento y dominio que tiene sobre los contenidos de la asignatura o taller que imparte es";
+						$texto_pregunta[3] = "Su habilidad para establecer un clima de respeto, equidad, confianza y solidaridad durante el espacio de trabajo es";
+						$texto_pregunta[4] = "La capacidad para escuchar y atender a los alumnos de una forma respetuosa cuando estos requieren expresar sus ideas, comentarios o inquietudes es";
+						$texto_pregunta[5] = "El nivel de aplicación de los contenidos de la materia, taller o actividad a las situaciones y problemas de la vida cotidiana es";
+						$texto_pregunta[6] = "La capacidad para establecer y mantener normas consistentes para la buena convivencia durante las sesiones de trabajo es";
+						$texto_pregunta[7] = "El nivel de organización que tiene para establecer un ambiente favorable de trabajo y hacer buen uso de los espacios y recursos para el aprendizaje es";
+						$texto_pregunta[8] = "Comunica en forma clara y precisa los objetivos de aprendizaje";
+						$texto_pregunta[9] = "Las estrategias de enseñanza que utiliza son desafiantes y significativas para los estudiantes";
+						$texto_pregunta[10] = "Promueve el desarrollo del pensamiento crítico";
+						$texto_pregunta[11] = "La forma de evaluar es clara, objetiva y en ella se reflejan tanto los conocimientos como las habilidades y valores desarrollados en la asignatura";
+						$texto_pregunta[12] = "¿Qué aspectos consideras que podría mejorar el profesor para favorecer el proceso de aprendizaje y desarrollo de sus alumnos?";
+						$texto_pregunta[13] = "¿Cuáles son las cualidades y fortalezas del profesor que favorecen el proceso de aprendizaje y desarrollo de sus alumnos?";
+						unset($listado_de_materias);
+						if(isset($parametros[2])) {
+							$orden_sql = "SELECT DISTINCT materia FROM bach_profesores WHERE nombre='" . $parametros[1] . "' ORDER BY materia";
+							// Ejecuta la consulta SQL
+							$resultado_busqueda2 = mysqli_query($base_de_datos, $orden_sql);
+							if ($resultado_busqueda2) {
+								if (mysqli_num_rows($resultado_busqueda2) > 0) { while($registro2 = mysqli_fetch_array($resultado_busqueda2)) { $listado_de_materias[] = $registro2['materia']; } }
+								// Libera el conjunto de resultados
+								mysqli_free_result($resultado_busqueda2);
+							}
+						} else {
+							$listado_de_materias[] = "==TODO==";
+						}
+						if(isset($parametros[2])) {
+							$tope_materias = count($listado_de_materias)-1;
+						} else {
+							$tope_materias = 0;
+						}
+						for ($contador_materias=0; $contador_materias<=$tope_materias; $contador_materias++) {
+							unset($respuestas);
+							unset($contador_evaluaciones);
+							$contador_evaluaciones = 0;
+							for ($contador_secciones=1; $contador_secciones<=$total_secciones; $contador_secciones++) {
+								for ($contador_subsecciones=1; $contador_subsecciones<=$total_subsecciones[$contador_secciones]; $contador_subsecciones++) {
+									if ($secciones[$contador_secciones][$contador_subsecciones]['tipo']=="CERRADA") {
+										if ($secciones[$contador_secciones][$contador_subsecciones]['cero'] != "") {
+											$inicio_valores = 0;
+											$fin_valores = count($set_valores[$secciones[$contador_secciones][$contador_subsecciones]['set_valores']]) - 1;
+										} else {
+											$inicio_valores = 1;
+											$fin_valores = count($set_valores[$secciones[$contador_secciones][$contador_subsecciones]['set_valores']]);
+										}
+										for ($contador_items=$secciones[$contador_secciones][$contador_subsecciones]['inicia']; $contador_items<=$secciones[$contador_secciones][$contador_subsecciones]['termina']; $contador_items++) {
+											for ($contador_valores=$inicio_valores; $contador_valores<=$fin_valores; $contador_valores++) {
+												$respuestas[$contador_items][$contador_valores] = 0;
+											}
+										}
+									} elseif ($secciones[$contador_secciones][$contador_subsecciones]['tipo']=="MULTIPLE") {
+										$inicio_valores = 1;
+										$fin_valores = count($set_valores[$secciones[$contador_secciones][$contador_subsecciones]['set_valores']]);
+										for ($contador_items=$secciones[$contador_secciones][$contador_subsecciones]['inicia']; $contador_items<=$secciones[$contador_secciones][$contador_subsecciones]['termina']; $contador_items++) {
+											for ($contador_valores=$inicio_valores; $contador_valores<=$fin_valores; $contador_valores++) {
+												$respuestas[$contador_items][$set_valores[$secciones[$contador_secciones][$contador_subsecciones]['set_valores']][$contador_valores]] = 0;
+												//$respuestas[$contador_items][$contador_valores] = 0;
+											}
+										}
+									} elseif ($secciones[$contador_secciones][$contador_subsecciones]['tipo']=="ABIERTA") {
+										for ($contador_items=$secciones[$contador_secciones][$contador_subsecciones]['inicia']; $contador_items<=$secciones[$contador_secciones][$contador_subsecciones]['termina']; $contador_items++) {
+											//$respuestas[$contador_items][0] = "==INICIO==";
+										}
+									}
+								}
+							}
+							// ########### FIN DE BLOQUE INICIALIZAR VARIABLES
+							// ########### INICIO BLOQUE RECUPERAR RESPUESTAS
+							// Genera la orden SQL para hacer la consulta a la tabla de la evaluación general de licenciaturas
+							$orden_sql = "SELECT * ";
+							$orden_sql .= "FROM bach_profesores ";
+							$orden_sql .= "WHERE nombre='" . $parametros[1] . "' ";
+							if(isset($parametros[2])) {
+								$orden_sql .= "AND materia='" . $listado_de_materias[$contador_materias] . "' ";
+							}
+							$orden_sql .= "ORDER BY materia";
+							// Ejecuta la consulta SQL
+							$resultado_busqueda = mysqli_query($base_de_datos, $orden_sql);
+							if ($resultado_busqueda) {
+								if (mysqli_num_rows($resultado_busqueda) > 0) {
+									// Inicializar variables
+									while($registro = mysqli_fetch_array($resultado_busqueda)) {
+										$contador_evaluaciones++;
+										for ($contador_secciones=1; $contador_secciones<=$total_secciones; $contador_secciones++) {
+											for ($contador_subsecciones=1; $contador_subsecciones<=$total_subsecciones[$contador_secciones]; $contador_subsecciones++) {
+												if ($secciones[$contador_secciones][$contador_subsecciones]['tipo']=="CERRADA") {
+													for ($contador_items=$secciones[$contador_secciones][$contador_subsecciones]['inicia']; $contador_items<=$secciones[$contador_secciones][$contador_subsecciones]['termina']; $contador_items++) {
+														$respuestas[$contador_items][$registro[$numero_pregunta[$contador_items]]]++;
+													}
+												} elseif ($secciones[$contador_secciones][$contador_subsecciones]['tipo']=="MULTIPLE") {
+													for ($contador_items=$secciones[$contador_secciones][$contador_subsecciones]['inicia']; $contador_items<=$secciones[$contador_secciones][$contador_subsecciones]['termina']; $contador_items++) {
+														//$respuestas[$contador_items][$registro[$numero_pregunta[$contador_items]]]++;
+														$texto = $registro[$numero_pregunta[$contador_items]];
+														while (strlen($texto) > 2) {
+															$texto = substr($texto, 1);
+															$subtexto = substr($texto, 0, strpos($texto, "#"));
+															if($subtexto != '') {
+																$respuestas[$contador_items][$subtexto]++;
+															}
+															$texto = substr($texto, strlen($subtexto));
+														}
+													}
+												} elseif ($secciones[$contador_secciones][$contador_subsecciones]['tipo']=="ABIERTA") {
+													for ($contador_items=$secciones[$contador_secciones][$contador_subsecciones]['inicia']; $contador_items<=$secciones[$contador_secciones][$contador_subsecciones]['termina']; $contador_items++) {
+														if ($registro[$numero_pregunta[$contador_items]] != "") {
+															$respuestas[$contador_items][] = $registro[$numero_pregunta[$contador_items]];
+														} else {
+															$respuestas[$contador_items][] = NULL;
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								// Libera el conjunto de resultados
+								mysqli_free_result($resultado_busqueda);
+							}
+							// ########### FIN BLOQUE RECUPERAR RESPUESTAS
+							// ########### INICIO DEL CUESTIONARIO
+							if(isset($parametros[2])) {
+								echo "<div class='seccion'>" . $listado_de_materias[$contador_materias] . "</div>";
+							} else {
+								echo "<div class='seccion'>REPORTE GENERAL</div>";
+							}
+					?>
+					<div class="contenedor-interno">
+						<table class="table table-bordered table-striped table-sm">
+							<?php
+								// ============== INICIO BLOQUE SECCIONES
+								for ($contador_secciones=1; $contador_secciones<=$total_secciones; $contador_secciones++) {
+									echo "<tr>";
+									echo "<th class='fondo-marista' style='width:5%;'>" . a_romano($contador_secciones) . "</th>";
+									echo "<th class='fondo-marista' style='text-align:left;width:45%;'>" . $secciones[$contador_secciones][0]['texto'] . "</th>";
+									echo "<th class='fondo-marista' colspan='" . $valores_por_renglon . "' style='text-align:left;width:50%;'>&nbsp;</th>";
+									echo "</tr>";
+									// ============== INICIO BLOQUE SECCIONES INTERNAS
+									for ($contador_subsecciones=1; $contador_subsecciones<=$total_subsecciones[$contador_secciones]; $contador_subsecciones++) {
+										// ============== INICIO BLOQUE ITEMS
+										for ($contador_items=$secciones[$contador_secciones][$contador_subsecciones]['inicia']; $contador_items<=$secciones[$contador_secciones][$contador_subsecciones]['termina']; $contador_items++) {
+											echo "<tr>";
+											if ($secciones[$contador_secciones][$contador_subsecciones]['cero']=="") {
+												$inicio_contador_respuestas = 1;
+												$incremento_respuestas = 0;
+											} else {
+												$inicio_contador_respuestas = 0;
+												$incremento_respuestas = 1;
+											}
+											if (($tamano_set_valores[$secciones[$contador_secciones][$contador_subsecciones]['set_valores']]+$incremento_respuestas)>$valores_por_renglon) {
+												$rowspan = " rowspan='" . ceil(($tamano_set_valores[$secciones[$contador_secciones][$contador_subsecciones]['set_valores']]+$incremento_respuestas)/$valores_por_renglon) . "'";
+											} else {
+												$rowspan = "";
+											}
+											echo "<td$rowspan style='font-weight:bold;width:5%;text-align:center;'>$contador_items</td>";
+											if (($tamano_set_valores[$secciones[$contador_secciones][$contador_subsecciones]['set_valores']]+$incremento_respuestas)>=$valores_por_renglon) {
+												$ancho_multiplicador = 1;
+												$colspan = "";
+											} else {
+												if (floor($valores_por_renglon/($tamano_set_valores[$secciones[$contador_secciones][$contador_subsecciones]['set_valores']]+$incremento_respuestas))>1) {
+													$ancho_multiplicador = floor($valores_por_renglon/($tamano_set_valores[$secciones[$contador_secciones][$contador_subsecciones]['set_valores']]+$incremento_respuestas));
+													$colspan = " colspan='" . $ancho_multiplicador . "'";
+												} else {
+													$ancho_multiplicador = 1;
+													$colspan = "";
+												}
+											}
+											if ($secciones[$contador_secciones][$contador_subsecciones]['tipo']=="CERRADA") {
+												echo "<td$rowspan" . $fondo[$contador_items] . " style='width:45%;text-align:left;'>" . $texto_pregunta[$contador_items] . "</td>";
+												for ($contador_respuestas=$inicio_contador_respuestas; $contador_respuestas<=$tamano_set_valores[$secciones[$contador_secciones][$contador_subsecciones]['set_valores']]; $contador_respuestas++) {
+													if (($contador_respuestas+$incremento_respuestas)<$valores_por_renglon) {
+														$ancho = ceil((50/$valores_por_renglon)) * $ancho_multiplicador;
+													} else {
+														$ancho = 50 - (ceil((50/$valores_por_renglon)) * ($valores_por_renglon - 1));
+													}
+													if (($contador_respuestas>1) AND ((($contador_respuestas-1+$incremento_respuestas) % $valores_por_renglon) == 0)) {
+														echo "</tr>";
+														echo "<tr>";
+													}
+													echo "<td$colspan" . $fondo[$contador_items] . " style='width:$ancho%;text-align:center;'>";
+													echo "<a style='font-size:0.7em;'>" . $set_valores[$secciones[$contador_secciones][$contador_subsecciones]['set_valores']][$contador_respuestas] . "</a><br />";
+													echo "<b>" . round(($respuestas[$contador_items][$contador_respuestas] / $contador_evaluaciones) * 100, 2) . "%</b>";
+													echo "</td>";
+												}
+											} elseif ($secciones[$contador_secciones][$contador_subsecciones]['tipo']=="MULTIPLE") {
+												echo "<td$rowspan" . $fondo[$contador_items] . " style='width:45%;text-align:left;'>" . $texto_pregunta[$contador_items] . "</td>";
+												for ($contador_respuestas=$inicio_contador_respuestas; $contador_respuestas<=$tamano_set_valores[$secciones[$contador_secciones][$contador_subsecciones]['set_valores']]; $contador_respuestas++) {
+													if (($contador_respuestas+$incremento_respuestas)<$valores_por_renglon) {
+														$ancho = ceil((50/$valores_por_renglon)) * $ancho_multiplicador;
+													} else {
+														$ancho = 50 - (ceil((50/$valores_por_renglon)) * ($valores_por_renglon - 1));
+													}
+													if (($contador_respuestas>1) AND ((($contador_respuestas-1+$incremento_respuestas) % $valores_por_renglon) == 0)) {
+														echo "</tr>";
+														echo "<tr>";
+													}
+													echo "<td$colspan" . $fondo[$contador_items] . " style='width:$ancho%;text-align:center;'>";
+													echo "<a style='font-size:0.7em;'>" . $set_valores[$secciones[$contador_secciones][$contador_subsecciones]['set_valores']][$contador_respuestas] . "</a><br />";
+													echo "<b>" . round(($respuestas[$contador_items][$set_valores[$secciones[$contador_secciones][$contador_subsecciones]['set_valores']][$contador_respuestas]] / $contador_evaluaciones) * 100, 2) . "%</b>";
+													echo "</td>";
+												}
+											} else {
+												echo "<td style='width:45%;text-align:left;" . $fondo[$contador_items] . "'>";
+												echo "" . $texto_pregunta[$contador_items] . "";
+												echo "</td>";
+												echo "<td$colspan" . $fondo[$contador_items] . " style='width:50%;text-align:left;'>";
+												for ($contador_respuestas=0; $contador_respuestas<=count($respuestas[$contador_items])-1; $contador_respuestas++) {
+													if ($respuestas[$contador_items][$contador_respuestas]!=NULL) {
+														echo "<li>" . $respuestas[$contador_items][$contador_respuestas] . "</li>";
+													}
+												}
+												echo "</td>";
+											}
+											if (((($tamano_set_valores[$secciones[$contador_secciones][$contador_subsecciones]['set_valores']]+$incremento_respuestas) * $ancho_multiplicador) % $valores_por_renglon) > 0) {
+												echo "<td class='gris' colspan='" . ($valores_por_renglon - ((($tamano_set_valores[$secciones[$contador_secciones][$contador_subsecciones]['set_valores']]+$incremento_respuestas) * $ancho_multiplicador) % $valores_por_renglon)) . "'>&nbsp;</td>";
+											}
+											echo "</tr>";
+										}
+										// ============== TERMINA BLOQUE ITEMS
+									}
+									// ============== TERMINA BLOQUE SECCIONES INTERNAS
+								}
+								// ============== TERMINA BLOQUE SECCIONES
+							?>
+						</table>
+					</div>
+					<?php
+						// ########### FIN DEL CUESTIONARIO
+						}
+					?>
+					<div class="nota-verde">
+						<table style="border:none;text-align:left;">
+							<tr style="border:none;text-align:left;">
+								<td style="border:none;text-align:left;"><img src="lib/img/planeta_casa.jpg" /></td>
+								<td style="border:none;text-align:left;padding:0px 0px 0px 10px;">Cuidemos del medio ambiente.<br />Por favor no imprimas este reporte si no es necesario.</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<?php mysqli_close($base_de_datos); ?>
+	<script type="text/javascript"> window.print(); </script>
+</html>
