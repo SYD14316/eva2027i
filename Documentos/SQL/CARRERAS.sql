@@ -1,0 +1,14 @@
+INSERT INTO carreras (id, departamento, carrera, coordinador, sexo, sello) VALUES (1,'JEFATURA ACADÉMICA','ADMINISTRACION Y DIRECCION DE NEGOCIOS','PEÑA CAMACHO RODRIGO','MASCULINO','0');
+INSERT INTO carreras (id, departamento, carrera, coordinador, sexo, sello) VALUES (2,'JEFATURA ACADÉMICA','DERECHO','OCEGUERA LOPEZ BEATRIZ ALEJANDRA','FEMENINO','0');
+INSERT INTO carreras (id, departamento, carrera, coordinador, sexo, sello) VALUES (3,'JEFATURA ACADÉMICA','NUTRICION Y GASTRONOMIA','PEÑA CAMACHO RODRIGO','MASCULINO','0');
+INSERT INTO carreras (id, departamento, carrera, coordinador, sexo, sello) VALUES (4,'JEFATURA ACADÉMICA','PSICOLOGIA','OCEGUERA LOPEZ BEATRIZ ALEJANDRA','FEMENINO','0');
+INSERT INTO carreras (id, departamento, carrera, coordinador, sexo, sello) VALUES (5,'JEFATURA ACADÉMICA','ANIMACION DIGITAL Y VIDEOJUEGOS','VAZQUEZ CARRASCO CHRISTIAN ALAIN','MASCULINO','0');
+INSERT INTO carreras (id, departamento, carrera, coordinador, sexo, sello) VALUES (6,'JEFATURA ACADÉMICA','ARQUITECTURA','VAZQUEZ CARRASCO CHRISTIAN ALAIN','MASCULINO','0');
+INSERT INTO carreras (id, departamento, carrera, coordinador, sexo, sello) VALUES (7,'JEFATURA ACADÉMICA','DISEÑO GRAFICO Y DIGITAL','VAZQUEZ CARRASCO CHRISTIAN ALAIN','MASCULINO','0');
+INSERT INTO carreras (id, departamento, carrera, coordinador, sexo, sello) VALUES (8,'JEFATURA ACADÉMICA','INGENIERIA AEROESPACIAL','SANTANA ROSAS JUAN MANUEL','MASCULINO','0');
+INSERT INTO carreras (id, departamento, carrera, coordinador, sexo, sello) VALUES (9,'JEFATURA ACADÉMICA','INGENIERIA CIBERNETICA Y EN SISTEMAS COMPUTACIONALES','CARRILLO TOVAR CHRISTIAN','MASCULINO','0');
+INSERT INTO carreras (id, departamento, carrera, coordinador, sexo, sello) VALUES (10,'JEFATURA ACADÉMICA','INGENIERIA INDUSTRIAL Y EN SISTEMAS ORGANIZACIONALES','CARRILLO TOVAR CHRISTIAN','MASCULINO','0');
+INSERT INTO carreras (id, departamento, carrera, coordinador, sexo, sello) VALUES (11,'JEFATURA ACADÉMICA','INGENIERIA EN INTELIGENCIA ARTIFICIAL','CARRILLO TOVAR CHRISTIAN','MASCULINO','0');
+INSERT INTO carreras (id, departamento, carrera, coordinador, sexo, sello) VALUES (12,'JEFATURA ACADÉMICA','INGENIERIA AUTOMOTRIZ','CARRILLO TOVAR CHRISTIAN','MASCULINO','0');
+INSERT INTO carreras (id, departamento, carrera, coordinador, sexo, sello) VALUES (13,'JEFATURA ACADÉMICA','IDIOMAS','ALANIZ OLGUIN CARLOS IVAN ','MASCULINO','0');
+INSERT INTO carreras (id, departamento, carrera, coordinador, sexo, sello) VALUES (14,'JEFATURA ACADÉMICA','MATERIAS INSTITUCIONALES','OCEGUERA LOPEZ BEATRIZ ALEJANDRA','FEMENINO','1');

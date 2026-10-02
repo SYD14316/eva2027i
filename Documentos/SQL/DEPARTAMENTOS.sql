@@ -1,0 +1,3 @@
+INSERT INTO departamentos (id, departamento, jefe, sexo) VALUES (1,'DIRECCION GENERAL EDUCATIVA','OLIVER LOPEZ ROCIO','FEMENINO');
+INSERT INTO departamentos (id, departamento, jefe, sexo) VALUES (2,'JEFATURA ACADÉMICA','CALERA SUAREZ ALEJANDRO','MASCULINO');
+INSERT INTO departamentos (id, departamento, jefe, sexo) VALUES (3,'PROYECTOS ACADEMICOS','NAVARRO SOTO MARIA DOLORES','FEMENINO');
